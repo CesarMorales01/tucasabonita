@@ -1,0 +1,5 @@
+<?PHP
+include("datos.php");$cedula=$_REQUEST['cedula']; $mysql=new mysqli($hostname_localhost,$username_localhost,$password_localhost,$database_localhost);if ($mysql->connect_error) die("Problemas con la conexión a la base de datos");$periodicidad="'".$_REQUEST['periodicidad']."'";
+$mysql->query("update creditos_casa_bonita set cedula='$_REQUEST[cedula]', fecha_prest='$_REQUEST[fecha_prest]', valorprestamo='$_REQUEST[valorprestamo]',tiempo_meses='$_REQUEST[tiempo_meses]', interes='$_REQUEST[interes]', periodicidad=$periodicidad, n_cuotas='$_REQUEST[n_cuotas]', valor_cuotas='$_REQUEST[valor_cuotas]',totalapagar='$_REQUEST[totalapagar]', vencimiento='$_REQUEST[vencimiento]', asesor='$_REQUEST[asesor]', tt_abonos='$_REQUEST[tt_abonos]',tt_saldo='$_REQUEST[tt_saldo]'  where fecha_prest='$_REQUEST[fecha_prest]' and cedula=$_REQUEST[cedula]") or die ("problemas al actualizar cedula");
+if($mysql){ $notificacion="La informacion del prestamo se ha actualizado";header("Location: $url/Form_%20detalle_cuentas_todos.php?cedula=$cedula.&notificacion=$notificacion");	}
+?>
